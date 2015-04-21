@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
-	<a href="http://previewchanges.com/~iadams/SEOstats/"><h1>SERP <span style="font-weight:100;">Tool™</span></h1></a>
+	<a href="http://previewchanges.com/~iadams/serptool/"><h1>SERP <span style="font-weight:100;">Tool™</span></h1></a>
 	<h2>results:</h2>
 
 <table>
@@ -32,12 +32,14 @@ use \SEOstats\Services\Google as Google;
 
 try {
     foreach ($keywords as $key) {
-        $serps = Google::getSerps($key, 50, $url);
-        
+    	if (!empty($key)) {
+        $serps = Google::getSerps($key, 30, $url);
           echo "<tr><td>" . $key . "</td>";
           echo "<td>" . $serps[0]['position'] . "</td></tr>";
+        }
     }
 }
+
 catch (\Exception $e) {
     echo 'Caught SEOstatsException: ' .  $e->getMessage();
 }
