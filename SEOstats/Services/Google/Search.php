@@ -154,17 +154,7 @@ class Search extends SEOstats
 
     protected static function gCurl($path, $ref, $useCookie = Config\DefaultSettings::ALLOW_GOOGLE_COOKIES)
     {
-        $connect = mysqli_connect("localhost", "iadams", "serp1", "serpin_db") or die("Error " . mysqli_error($link)); 
-        $timestamp = date('Y-m-d G:i:s');
-
-        //Select proxies to use
-        $selectProxy = "SELECT * FROM proxies ORDER BY ts ASC limit 1;";
-        $proxy = mysqli_query($connect, $selectProxy) or die("problem here");
-        $proxy = mysqli_fetch_row($proxy);
-        //Update timestamp on proxies
-        $query = "UPDATE proxies SET ts='$timestamp' WHERE id='$proxy[2]';";
-        mysqli_query($connect, $query);
-
+      
         $url = sprintf('https://www.google.%s/', Config\DefaultSettings::GOOGLE_TLD);
         $referer = $ref == '' ? $url : $ref;
         $url .= $path;
